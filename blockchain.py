@@ -58,12 +58,10 @@ class BlockChain(object):
         proof = 0
         while self.valid_proof(last_proof, proof) is False:
             proof += 1
-        
         return proof
     
     # prrof of work checker function
     def valid_proof(self, last_proof, proof):
         guess = str.encode(str(last_proof)+str(proof))
         guesshash = hashlib.sha256(guess).hexdigest()
-
         return guesshash[:self.hash_difficulty]==self.hash_suffix
